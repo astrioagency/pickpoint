@@ -12,7 +12,7 @@ The module is designed to work with Magento 1.9.x.
 
 ### Install manually
 
-* Download the latest release
+* [Download the latest release](https://github.com/astrioagency/pickpoint/releases/latest)
 * Unpack
 * Copy contents of the `src` directory into a directory where Magento is installed
 
