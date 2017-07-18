@@ -1,0 +1,9 @@
+src/app/code/community/Astrio/Pickpoint app/code/community/Astrio/Pickpoint
+src/app/etc/modules/Astrio_Pickpoint.xml app/etc/modules/Astrio_Pickpoint.xml
+src/app/design/adminhtml/default/default/template/astrio/pickpoint app/design/adminhtml/default/default/template/astrio/pickpoint
+src/app/design/frontend/base/default/layout/astrio_pickpoint.xml app/design/frontend/base/default/layout/astrio_pickpoint.xml
+src/app/design/frontend/base/default/template/astrio/pickpoint app/design/frontend/base/default/template/astrio/pickpoint
+src/app/locale/en_US/Astrio_Pickpoint.csv app/locale/en_US/Astrio_Pickpoint.csv
+src/app/locale/ru_RU/Astrio_Pickpoint.csv app/locale/ru_RU/Astrio_Pickpoint.csv
+src/skin/adminhtml/default/default/astrio/pickpoint skin/adminhtml/default/default/astrio/pickpoint
+src/skin/frontend/base/default/astrio/pickpoint skin/frontend/base/default/astrio/pickpoint

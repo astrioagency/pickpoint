@@ -1,0 +1,37 @@
+<?php
+/**
+ * Astrio Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0).
+ * It is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you are unable to obtain it through the world-wide-web, please send
+ * an email to info@astrio.net so we can send you a copy immediately.
+ *
+ * @category  design
+ * @package   base_default
+ * @copyright Copyright (c) 2010-2017 Astrio Co. (http://astrio.net)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php
+/**
+ * PickPoint shipping method info/additional data block template
+ * 
+ * @author Vladimir Khalzov <v.khalzov@astrio.net>
+ *
+ * @var $this Astrio_Pickpoint_Block_Checkout_Shipping_Method_Pickpoint
+ */
+?>
+
+<div class="astrio-pickpoint-method-block">
+    <div class="astrio-pickpoint-postamat-selector">
+        <span class="astrio-pickpoint-select-text"><?php echo $this->__('Please, select postamat'); ?>:</span>
+        <?php echo $this->getPostamatSelectorHtml(); ?>
+    </div>
+    <div class="astrio-pickpoint-map">
+        <a href="#"><?php echo $this->__('Select postamat on a map'); ?></a>
+    </div>
+</div>

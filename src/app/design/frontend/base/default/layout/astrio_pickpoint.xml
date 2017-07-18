@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Astrio Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0).
+ * It is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you are unable to obtain it through the world-wide-web, please send
+ * an email to info@astrio.net so we can send you a copy immediately.
+ *
+ * @category   design
+ * @package    base_default
+ * @copyright  Copyright (c) 2010-2017 Astrio Co. (http://astrio.net)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<layout version="0.1.0">
+
+    <checkout_onepage_index>
+        <reference name="head">
+            <block type="core/text" name="astrio_pickpoint.postamat_js">
+                <action method="setText">
+                    <text><![CDATA[<script type="text/javascript" src="//pickpoint.ru/select/postamat.js"></script>]]></text>
+                </action>
+            </block>
+            <action method="addCss">
+                <file>astrio/pickpoint/css/checkout.css</file>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>astrio/pickpoint/js/checkout.js</name>
+            </action>
+        </reference>
+        <reference name="checkout.onepage.shipping_method.available">
+            <action method="setTemplate">
+                <template>astrio/pickpoint/checkout/onepage/shipping_method/available.phtml</template>
+            </action>
+            <block type="astrio_pickpoint/checkout_shipping_method_pickpoint" name="checkout.shipping_method.info.astriopickpoint" template="astrio/pickpoint/checkout/shipping_method/pickpoint.phtml" />
+        </reference>
+        <reference name="before_body_end">
+            <block type="core/template" name="astrio.pickpoint.onepage.init_js" template="astrio/pickpoint/checkout/onepage/init_js.phtml" />
+        </reference>
+    </checkout_onepage_index>
+
+    <checkout_onepage_shippingmethod>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>astrio/pickpoint/checkout/onepage/shipping_method/available.phtml</template>
+            </action>
+            <block type="astrio_pickpoint/checkout_shipping_method_pickpoint" name="checkout.shipping_method.info.astriopickpoint" template="astrio/pickpoint/checkout/shipping_method/pickpoint.phtml" />
+        </reference>
+    </checkout_onepage_shippingmethod>
+
+</layout>

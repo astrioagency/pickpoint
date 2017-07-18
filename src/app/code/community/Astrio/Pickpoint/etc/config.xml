@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Astrio Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0).
+ * It is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you are unable to obtain it through the world-wide-web, please send
+ * an email to info@astrio.net so we can send you a copy immediately.
+ *
+ * @category   Astrio
+ * @package    Astrio_Pickpoint
+ * @copyright  Copyright (c) 2010-2017 Astrio Co. (http://astrio.net)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Astrio_Pickpoint>
+            <version>1.0.2</version>
+        </Astrio_Pickpoint>
+    </modules>
+    <global>
+        <models>
+            <astrio_pickpoint>
+                <class>Astrio_Pickpoint_Model</class>
+                <resourceModel>astrio_pickpoint_resource</resourceModel>
+            </astrio_pickpoint>
+            <astrio_pickpoint_resource>
+                <class>Astrio_Pickpoint_Model_Resource</class>
+                <entities>
+                    <city>
+                        <table>astrio_pickpoint_city</table>
+                    </city>
+                    <postamat>
+                        <table>astrio_pickpoint_postamat</table>
+                    </postamat>
+                    <zone>
+                        <table>astrio_pickpoint_zone</table>
+                    </zone>
+                </entities>
+            </astrio_pickpoint_resource>
+            <sales>
+                <rewrite>
+                    <quote_address>Astrio_Pickpoint_Rewrite_Mage_Sales_Model_Quote_Address</quote_address>
+                </rewrite>
+            </sales>
+            <checkout>
+                <rewrite>
+                    <type_onepage>Astrio_Pickpoint_Rewrite_Mage_Checkout_Model_Type_Onepage</type_onepage>
+                </rewrite>
+            </checkout>
+        </models>
+        <resources>
+            <astrio_pickpoint_setup>
+                <setup>
+                    <module>Astrio_Pickpoint</module>
+                </setup>
+            </astrio_pickpoint_setup>
+        </resources>
+        <blocks>
+            <astrio_pickpoint>
+                <class>Astrio_Pickpoint_Block</class>
+            </astrio_pickpoint>
+        </blocks>
+        <helpers>
+            <astrio_pickpoint>
+                <class>Astrio_Pickpoint_Helper</class>
+            </astrio_pickpoint>
+        </helpers>
+        <sales>
+            <shipping>
+                <carriers>
+                    <astrio_pickpoint>
+                        <class>Astrio_Pickpoint_Model_Shipping_Carrier_Pickpoint</class>
+                    </astrio_pickpoint>
+                </carriers>
+            </shipping>
+        </sales>
+        <events>
+            <sales_model_service_quote_submit_before>
+                <observers>
+                    <astrio_pickpoint_update_shipping_descr>
+                        <type>singleton</type>
+                        <class>astrio_pickpoint/observer</class>
+                        <method>updateShippingDescription</method>
+                    </astrio_pickpoint_update_shipping_descr>
+                </observers>
+            </sales_model_service_quote_submit_before>
+            <astrio_moysklad_order_export_get_agent>
+                <observers>
+                    <astrio_pickpoint_update_shipping_address>
+                        <type>singleton</type>
+                        <class>astrio_pickpoint/observer</class>
+                        <method>updateMsOrderAgentShippingAddress</method>
+                    </astrio_pickpoint_update_shipping_address>
+                </observers>
+            </astrio_moysklad_order_export_get_agent>
+        </events>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <astrio_pickpoint after="Mage_Adminhtml">Astrio_Pickpoint_Adminhtml</astrio_pickpoint>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <frontend>
+        <layout>
+            <updates>
+                <astrio_pickpoint>
+                    <file>astrio_pickpoint.xml</file>
+                </astrio_pickpoint>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Astrio_Pickpoint>
+                    <files>
+                        <default>Astrio_Pickpoint.csv</default>
+                    </files>
+                </Astrio_Pickpoint>
+            </modules>
+        </translate>
+    </frontend>
+    <adminhtml>
+        <layout>
+            <updates>
+                <astrio_pickpoint>
+                    <file>astrio_pickpoint.xml</file>
+                </astrio_pickpoint>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Astrio_Pickpoint>
+                    <files>
+                        <default>Astrio_Pickpoint.csv</default>
+                    </files>
+                </Astrio_Pickpoint>
+            </modules>
+        </translate>
+    </adminhtml>
+    <default>
+        <carriers>
+            <astriopickpoint>
+                <active>0</active>
+                <model>astrio_pickpoint/shipping_carrier_pickpoint</model>
+                <title>PickPoint</title>
+                <name>PickPoint</name>
+                <login>apitest</login>
+                <password backend_model="adminhtml/system_config_backend_encrypted" />
+                <test_mode>0</test_mode>
+                <secure>0</secure>
+                <origin_city>1</origin_city>
+                <apply_mainline_rate>0</apply_mainline_rate>
+                <ship_rate_region_-1 />
+                <ship_rate_region_0 />
+                <ship_rate_region_1 />
+                <ship_rate_region_2 />
+                <ship_rate_region_3 />
+                <ship_rate_region_4 />
+                <ship_rate_region_5 />
+                <ship_rate_region_6 />
+                <ship_rate_region_7 />
+                <ship_rate_region_8 />
+                <specific_origin_city />
+                <min_package_value>0</min_package_value>
+                <max_package_value>0</max_package_value>
+                <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
+                <sallowspecific>0</sallowspecific>
+                <debug>0</debug>
+                <showmethod>0</showmethod>
+                <sort_order>0</sort_order>
+                <free_shipping_enable>0</free_shipping_enable>
+                <free_shipping_subtotal>0</free_shipping_subtotal>
+            </astriopickpoint>
+        </carriers>
+    </default>
+    <crontab>
+        <jobs>
+            <astrio_pickpoint_update_postamats_list>
+                <schedule>
+                    <cron_expr>0 2 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>astrio_pickpoint/observer::cronUpdatePostamatsList</model>
+                </run>
+            </astrio_pickpoint_update_postamats_list>
+            <astrio_pickpoint_update_cities_list>
+                <schedule>
+                    <cron_expr>0 2 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>astrio_pickpoint/observer::cronUpdateCitiesList</model>
+                </run>
+            </astrio_pickpoint_update_cities_list>
+            <astrio_pickpoint_update_zones_list>
+                <schedule>
+                    <cron_expr>0 2 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>astrio_pickpoint/observer::cronUpdateZonesList</model>
+                </run>
+            </astrio_pickpoint_update_zones_list>
+        </jobs>
+    </crontab>
+</config>

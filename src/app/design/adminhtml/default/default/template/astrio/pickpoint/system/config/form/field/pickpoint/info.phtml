@@ -1,0 +1,34 @@
+<?php
+/**
+ * Astrio Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0).
+ * It is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you are unable to obtain it through the world-wide-web, please send
+ * an email to info@astrio.net so we can send you a copy immediately.
+ *
+ * @category  Astrio
+ * @package   Astrio_Pickpoint
+ * @copyright Copyright (c) 2010-2017 Astrio Co. (http://astrio.net)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php
+/**
+ * PickPoint info block template
+ * 
+ * @author Vladimir Khalzov <v.khalzov@astrio.net>
+ *
+ * @var $this Astrio_Pickpoint_Block_Adminhtml_System_Config_Form_Field_Pickpoint_Info
+ */
+?>
+<div class="astrio-pickpoint-config-info-block">
+    <a href="<?php echo $this->getLogoLinkUrl(); ?>" class="pickpoint-logo" target="_blank"><img src="<?php echo $this->getSkinUrl('astrio/pickpoint/images/logo.gif'); ?>" alt="<?php echo $this->escapeHtml($this->__('PickPoint')); ?>" /></a>
+    <div class="pickpoint-descr">
+        <?php echo $this->__('PickPoint - the first Russian company offering a unique service for the delivery of Internet orders in the automated terminals and issuing orders.'); ?>
+    </div>
+    <a href="<?php echo $this->getCreateAccountUrl(); ?>" target="_blank"><?php echo $this->__('Create PickPoint account'); ?></a>
+</div>

@@ -1,0 +1,346 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Astrio Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0).
+ * It is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you are unable to obtain it through the world-wide-web, please send
+ * an email to info@astrio.net so we can send you a copy immediately.
+ *
+ * @category   Astrio
+ * @package    Astrio_Pickpoint
+ * @copyright  Copyright (c) 2010-2017 Astrio Co. (http://astrio.net)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <sections>
+        <carriers>
+            <groups>
+                <astriopickpoint translate="label" module="astrio_pickpoint">
+                    <label>PickPoint</label>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <info>
+                            <frontend_model>astrio_pickpoint/adminhtml_system_config_form_field_pickpoint_info</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </info>
+                        <update_links>
+                            <frontend_model>astrio_pickpoint/adminhtml_system_config_form_field_pickpoint_updatelinks</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </update_links>
+                        <!-- General config -->
+                        <active translate="label comment" module="astrio_pickpoint">
+                            <label>Enabled for Checkout</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Enable PickPoint?</comment>
+                        </active>
+                        <title translate="label" module="astrio_pickpoint">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <!-- <validate>required-entry</validate> -->
+                        </title>
+                        <name translate="label" module="astrio_pickpoint">
+                            <label>Method name</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <!-- <validate>required-entry</validate> -->
+                        </name>
+                        <!-- PickPoint API credentials -->
+                        <client_number translate="label comment" module="astrio_pickpoint">
+                            <label>Individual client number</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>210</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Individual client number - PickPoint agreement number (e.g. 1111111111)]]></comment>
+                            <!-- <validate>required-entry validate-digits validate-length maximum-length-10 minimum-length-10</validate> -->
+                        </client_number>
+                        <login translate="label" module="astrio_pickpoint">
+                            <label>Login</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>220</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <!-- <validate>required-entry</validate> -->
+                        </login>
+                        <password translate="label" module="astrio_pickpoint">
+                            <label>Password</label>
+                            <!--<frontend_type>password</frontend_type>-->
+                            <frontend_type>obscure</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>230</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <!-- <validate>required-entry</validate> -->
+                        </password>
+                        <test_mode translate="label" module="astrio_pickpoint">
+                            <label>Enable test mode</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>240</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </test_mode>
+                        <secure translate="label" module="astrio_pickpoint">
+                            <label>Use secure connection</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>250</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <test_mode separator=",">0</test_mode>
+                            </depends>
+                        </secure>
+                        <!-- PickPoint configuration -->
+                        <origin_city translate="label" module="astrio_pickpoint">
+                            <label>Origin city</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>astrio_pickpoint/adminhtml_system_config_source_origincity</source_model>
+                            <sort_order>310</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </origin_city>
+                        <specific_origin_city translate="label comment" module="astrio_pickpoint">
+                            <label>Select origin city</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>astrio_pickpoint/adminhtml_system_config_source_specificorigincity</source_model>
+                            <sort_order>320</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <origin_city separator=",">2</origin_city>
+                            </depends>
+                            <comment><![CDATA[Please, update cities list if selector is empty.]]></comment>
+                        </specific_origin_city>
+                        <ship_rate_region_-1 translate="label" module="astrio_pickpoint">
+                            <label>Shipping rate to region -1</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>330</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <!-- <comment><![CDATA[Leave empty to disable delivery to this region. This is true for all regions.]]></comment> -->
+                        </ship_rate_region_-1>
+                        <ship_rate_region_0 translate="label" module="astrio_pickpoint">
+                            <label>Shipping rate to region 0</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>331</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </ship_rate_region_0>
+                        <ship_rate_region_1 translate="label" module="astrio_pickpoint">
+                            <label>Shipping rate to region 1</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>332</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </ship_rate_region_1>
+                        <ship_rate_region_2 translate="label" module="astrio_pickpoint">
+                            <label>Shipping rate to region 2</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>333</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </ship_rate_region_2>
+                        <ship_rate_region_3 translate="label" module="astrio_pickpoint">
+                            <label>Shipping rate to region 3</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>334</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </ship_rate_region_3>
+                        <ship_rate_region_4 translate="label" module="astrio_pickpoint">
+                            <label>Shipping rate to region 4</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>335</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </ship_rate_region_4>
+                        <ship_rate_region_5 translate="label" module="astrio_pickpoint">
+                            <label>Shipping rate to region 5</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>336</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </ship_rate_region_5>
+                        <ship_rate_region_6 translate="label" module="astrio_pickpoint">
+                            <label>Shipping rate to region 6</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>337</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </ship_rate_region_6>
+                        <ship_rate_region_7 translate="label" module="astrio_pickpoint">
+                            <label>Shipping rate to region 7</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>338</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </ship_rate_region_7>
+                        <ship_rate_region_8 translate="label" module="astrio_pickpoint">
+                            <label>Shipping rate to region 8</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>339</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </ship_rate_region_8>
+                        <apply_mainline_rate translate="label" module="astrio_pickpoint">
+                            <label>Apply mainline rate to shipping cost</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>340</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </apply_mainline_rate>
+                        <min_package_value translate="label" module="astrio_pickpoint">
+                            <label>Minimum package value</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>350</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <!-- <validate>validate-number validate-not-negative-number</validate> -->
+                        </min_package_value>
+                        <max_package_value translate="label" module="astrio_pickpoint">
+                            <label>Maximum package value</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>360</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Use 0 to disable limitation]]></comment>
+                            <!-- <validate>validate-number validate-not-negative-number</validate> -->
+                        </max_package_value>
+                        <!-- Free shipping -->
+                        <free_shipping_enable translate="label" module="astrio_pickpoint">
+                            <label>Free Shipping with Minimum Order Amount</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>390</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </free_shipping_enable>
+                        <free_shipping_subtotal translate="label" module="astrio_pickpoint">
+                            <label>Minimum Order Amount for Free Shipping</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-number validate-zero-or-greater</validate>
+                            <sort_order>395</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <free_shipping_enable separator=",">1</free_shipping_enable>
+                            </depends>
+                        </free_shipping_subtotal>
+                        <!-- / Free shipping -->
+                        <!-- Common shipping method settings -->
+                        <specificerrmsg translate="label" module="astrio_pickpoint">
+                            <label>Displayed Error Message</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>410</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </specificerrmsg>
+                        <sallowspecific translate="label" module="astrio_pickpoint">
+                            <label>Ship to Applicable Countries</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>420</sort_order>
+                            <frontend_class>shipping-applicable-country</frontend_class>
+                            <source_model>adminhtml/system_config_source_shipping_allspecificcountries</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </sallowspecific>
+                        <specificcountry translate="label" module="astrio_pickpoint">
+                            <label>Ship to Specific Countries</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>430</sort_order>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                            <depends>
+                                <sallowspecific separator=",">1</sallowspecific>
+                            </depends>
+                        </specificcountry>
+                        <debug translate="label" module="astrio_pickpoint">
+                            <label>Debug</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>440</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </debug>
+                        <showmethod translate="label" module="astrio_pickpoint">
+                            <label>Show Method if Not Applicable</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>450</sort_order>
+                            <frontend_class>shipping-skip-hide</frontend_class>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </showmethod>
+                        <sort_order translate="label" module="astrio_pickpoint">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>460</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <!-- <validate>validate-number</validate> -->
+                        </sort_order>
+                    </fields>
+                </astriopickpoint>
+            </groups>
+        </carriers>
+    </sections>
+</config>

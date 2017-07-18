@@ -1,0 +1,78 @@
+<?php
+/**
+ * Astrio Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0).
+ * It is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you are unable to obtain it through the world-wide-web, please send
+ * an email to info@astrio.net so we can send you a copy immediately.
+ *
+ * @category  design
+ * @package   base_default
+ * @copyright Copyright (c) 2010-2017 Astrio Co. (http://astrio.net)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+?>
+<?php
+/**
+ * PickPoint shipping method info/additional data block template
+ *
+ * @author Vladimir Khalzov <v.khalzov@astrio.net>
+ *
+ * @var $this Mage_Core_Block_Template
+ */
+?>
+
+<script type="text/javascript">
+//<![CDATA[
+Event.observe(document, 'dom:loaded', function() {
+    // Initialize PickPoint checkout controller
+    pickPointCheckout = new AstrioPickPointController({
+        shippingContainerId: 'checkout-step-shipping_method',
+        shippingPattern: 'input[type="radio"][name="shipping_method"]',
+        selectorPattern: 'select[name="<?php echo Astrio_Pickpoint_Model_Shipping_Carrier_Pickpoint::REQUEST_FIELD_NAME; ?>"]',
+        pickpointCode: '<?php echo Astrio_Pickpoint_Model_Shipping_Carrier_Pickpoint::CODE; ?>',
+        pickpointBlockSelector: 'div.astrio-pickpoint-method-block',
+        popupLinkSelector: '.astrio-pickpoint-map a',
+        saveUrl: '<?php echo $this->getUrl('checkout/onepage/saveShippingMethod'); ?>',
+        form: 'co-shipping-method-form',
+        callback: function() {
+            checkout.setLoadWaiting('shipping-method');
+            new Ajax.Request(this.saveUrl, {
+                method: 'post',
+                onComplete: function() {
+                    checkout.setLoadWaiting(false);
+                },
+                onSuccess: function(transport) {
+                    var response = transport.responseJSON || transport.responseText.evalJSON(true) || {};
+                    if (response.error) {
+                        alert(response.message.stripTags().toString());
+                        return false;
+                    }
+                    if (response.update_section) {
+                        $('checkout-' + response.update_section.name + '-load').update(response.update_section.html);
+                    }
+                    if (response.goto_section) {
+                        checkout.gotoSection(response.goto_section, true);
+                        checkout.reloadProgressBlock();
+                    }
+                },
+                onFailure: checkout.ajaxFailure.bind(checkout),
+                parameters: Form.serialize(this.$form)
+            });
+        }
+    });
+
+    checkout.gotoSection = function(section, reloadProgressBlock) {
+        Checkout.prototype.gotoSection.apply(this, arguments);
+        if ('shipping_method' === section) {
+            // Init PickPoint block after section load
+            pickPointCheckout.initPickPointBlock();
+        }
+    };
+});
+//]]>
+</script>
